@@ -69,7 +69,7 @@ local function most_dangerous_mons_in_los()
 
     -- If the following threshold is set appropriately, you can ignore small packs of Dangerous enemies.
     if max == 2 and dangerous_count <= DTD then
-        max = 0
+        max = 1
     end
     -- Lots of Easy enemies can raise the danger level from Safe to Dangerous, but not higher.
     -- Lots of Dangerous enemies can raise the danger level from Dangerous to Extremely Dangerous, but not higher.
