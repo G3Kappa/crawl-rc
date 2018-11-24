@@ -42,7 +42,7 @@ local function most_dangerous_mons_in_los()
     -- For each tile in LOS
     for x = -los_radius,los_radius do
         for y = -los_radius,los_radius do
-            t = get_mons_threat(x, y) or -1
+            t = get_mons_threat(x, y)
             -- If there's a monster, add it to spotted_mons and think about dupes later
             if t >= 0 then
                 m = monster.get_monster_at(x, y)

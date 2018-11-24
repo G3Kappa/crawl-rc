@@ -23,7 +23,7 @@ local function autoquaff_poisoned()
             local letter = items.index_to_letter(cure.slot)
             print("<green>[AP]</green> Quaffing potion of curing to heal poison.")
             crawl.sendkeys("q" .. letter)
-        elseif tried_to_cure_poison == false then
+        elseif not tried_to_cure_poison then
             print("<red>[AP]</red> Can't heal poison; no potions of curing were found/identified.")
             tried_to_cure_poison = true
         end
