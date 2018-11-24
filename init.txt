@@ -1,0 +1,149 @@
+##### Crawl Init file ###############################################
+# For descriptions of all options, as well as some more in-depth information
+# on setting them, consult the file
+#    options_guide.txt
+# in your /docs directory. If you can't find it, the file is also available
+# online at:
+# https://github.com/crawl/crawl/blob/master/crawl-ref/docs/options_guide.txt
+#
+# Crawl uses the first file of the following list as its option file:
+#  * init.txt in the -rcdir directory (if specified)
+#  * .crawlrc in the -rcdir directory (if specified)
+#  * init.txt (in the Crawl directory)
+#  * ~/.crawl/init.txt (Unix only)
+#  * ~/.crawlrc (Unix only)
+#  * ~/init.txt (Unix only)
+#  * settings/init.txt (in the Crawl directory)
+
+##### Some basic explanation of option syntax #######################
+# Lines beginning with '#' are comments. The basic syntax is:
+#
+# field = value         or      field.subfield = value
+#
+# Only one specification is allowed per line.
+#
+# The terms are typically case-insensitive except in the fairly obvious
+# cases (the character's name and specifying files or directories when
+# on a system that has case-sensitive filenames).
+#
+# White space is stripped from the beginning and end of the line, as
+# well as immediately before and after the '='. If the option allows
+# multiple comma/semicolon-separated terms (such as
+# autopickup_exceptions), all whitespace around the separator is also
+# trimmed. All other whitespace is left intact.
+#
+# There are three broad types of Crawl options: true/false values (booleans),
+# arbitrary values, and lists of values. The first two types use only the
+# simple =, with later options - which includes your options that are different
+# from the defaults - overriding earlier ones. List options allow using +=, ^=,
+# -=, and = to append, prepend, remove, and reset, respectively. Usually you will
+# want to use += to add to a list option. Lastly, there is := which you can use
+# to create an alias, like so:
+#   ae := autopickup_exceptions
+# From there on, 'ae' will be treated as if it you typed autopickup_exceptions,
+# so you can save time typing it.
+#
+
+##### Other files ###################################################
+# You can include other files from your options file using the 'include'
+# option. Crawl will treat it as if you copied the whole text of that file
+# into your options file in that spot. You can uncomment some of the following
+# lines by removing the beginning '#' to include some of the other files in
+# this folder.
+
+# Some useful, more advanced options, implemented in LUA.
+include = advanced_optioneering.txt
+
+# Alternative vi bindings for Dvorak users.
+# include = dvorak_command_keys.txt
+
+# Alternative vi bindings for Colemak users.
+# include = colemak_command_keys.txt
+
+# Override the vi movement keys with a non-command.
+# include = no_vi_command_keys.txt
+
+# Turn the shift-vi keys into safe move, instead of run.
+# include = safe_move_shift.txt
+
+##### Ancient versions ##############################################
+# If you're used to the interface of ancient versions of Crawl, you may
+# get back parts of it by uncommenting the following options:
+
+# include                 = 034_command_keys.txt
+
+# And to revert monster glyph and colouring changes:
+
+# include                 = 034_monster_glyphs.txt
+# include                 = 052_monster_glyphs.txt
+# include                 = 060_monster_glyphs.txt
+# include                 = 071_monster_glyphs.txt
+# include                 = 080_monster_glyphs.txt
+# include                 = 0.9_monster_glyphs.txt
+# include                 = 0.12_monster_glyphs.txt
+# include                 = 0.13_monster_glyphs.txt
+# include                 = 0.14_monster_glyphs.txt
+
+autofight_caught = true
+autofight_stop=75
+autofight_warning = 100
+
+hp_warning = 50
+mp_warning = 33
+
+pickup_mode=multi
+
+default_manual_training=true
+
+travel_delay=-1
+view_delay = 300
+show_travel_trail=true
+
+explore_auto_rest = true
+confirm_butcher = never
+easy_eat_chunks = true
+auto_eat_chunks = true
+auto_butcher = satiated
+travel_open_doors = true
+
+auto_switch = true
+autofight_throw = true
+
+easy_confirm = safe
+
+automagic_enable = true
+automagic_slot = A
+automagic_fight = true
+automagic_stop = 33
+
+autopickup_search = true
+
+tile_layout_priority = monster,minimap,spell,ability,inventory,gold_turn
+
+# The following options are nonstandard and depend on my scripts
+
+# ---- Threat Manager ----
+include += threats.lua
+# 4+ easy enemies = Danger!
+danger_group_easy = 4
+# 3+ dangerous enemies= Extreme danger!
+danger_group_dangerous = 3
+# 1 or less dangerous enemies at Danger! = Safe
+danger_threshold_dangerous = 1
+
+force_more_message += You're in danger!
+force_more_message += You're in extreme danger!
+
+# ---- Anti-Panic ----
+include += antipanic.lua
+
+autoheal_poison_max_health = 75
+autoheal_poison_min_danger = 0
+
+autoident_scroll_min = 2
+autoident_potion_min = 2
+
+force_more_message += \[AP\]
+
+# ---- Bootstrap ----
+include += bootstrap.lua
