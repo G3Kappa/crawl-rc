@@ -139,7 +139,6 @@ function alert_if_in_danger()
     elseif danger == 3 then
         print("<lightred>You're in extreme danger!</lightred>")
     end
-    crawl.flush_prev_message()
     print_mons_in_sight()
 end
 
